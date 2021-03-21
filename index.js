@@ -37,7 +37,7 @@ function runDeptPayOff(dept)
     console.log(`Amount to pay ${amount} interest of ${interest} interest accrued after every ${interestPeriod} payments`);
 
     var paidOfDuringInterestPeriod = 0;
-    var InterestDuringInterestPeriod = 0;
+    var interestDuringInterestPeriod = 0;
     var interestAmount = 0;
     var output = {
         payments : 0,
@@ -48,14 +48,14 @@ function runDeptPayOff(dept)
     while (amount > 0) {
         
         var paidOffValue = payOffValue;
-        output.datPoints.push([amount,output.amountOfInterestOnDept,paidOffValue,interestAmount,paidOfDuringInterestPeriod,InterestDuringInterestPeriod]);
+        output.datPoints.push([amount,output.amountOfInterestOnDept,paidOffValue,interestAmount,paidOfDuringInterestPeriod,interestDuringInterestPeriod]);
         amount -= paidOffValue;
         
         if(amount > 0  && interest > 0 && output.payments % interestPeriod == 0){
             var amountOfCurrentInterest = (amount * (interest/100))
             //console.log(`amount of interest ${amountOfInterest} (${amount})`);
             output.amountOfInterestOnDept += amountOfCurrentInterest;
-            InterestDuringInterestPeriod += amountOfCurrentInterest;
+            interestDuringInterestPeriod += amountOfCurrentInterest;
             interestAmount += amountOfCurrentInterest;
         }
 
@@ -83,7 +83,7 @@ function runDeptPayOff(dept)
         if(output.payments % interestPeriod == 0){
             //console.log(`actually paid off (${paidOfDuringInterestPeriod-InterestDuringInterestPeriod}) ; paidOfDuringInterestPeriod ${paidOfDuringInterestPeriod} InterestDuringInterestPeriod${InterestDuringInterestPeriod}`);
             paidOfDuringInterestPeriod=0;
-            InterestDuringInterestPeriod=0;
+            interestDuringInterestPeriod=0;
         }
         
     }
