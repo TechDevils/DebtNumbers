@@ -62,3 +62,7 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - package.json
+  - scripts/
+  - webpack.config.js
+  - src/
+  - node_modules/
