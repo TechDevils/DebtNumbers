@@ -1,31 +1,47 @@
-var dept = [];
 
-dept.push({value:125000, payOff : 600,interest:3, interestPeriod : 12});
-dept.push({value:6000,payOff : 200,interest:3, interestPeriod : 1});
-dept.push({value:6000,payOff : 200,interest:5, interestPeriod : 3});
-dept.push({value:6000,payOff : 200,interest:7, interestPeriod : 12});
-dept.push({value:125000,payOff : 600,interest:7, interestPeriod : 12});
+// dept.push({value:125000, payOff : 600,interest:3, interestPeriod : 12});
+// dept.push({value:6000,payOff : 200,interest:3, interestPeriod : 1});
+// dept.push({value:6000,payOff : 200,interest:5, interestPeriod : 3});
+// dept.push({value:6000,payOff : 200,interest:7, interestPeriod : 12});
+// dept.push({value:125000,payOff : 600,interest:7, interestPeriod : 12});
 
 //ToDo : add the ability to have and array of interest and pay of values so they can change after x payments
 //ToDo : add the function to show how much faster or slower the debt will be paid with different payoff amounts
 
-var totalPayOff = 0;
-var payments = 0;
-var amountOfInterest = 0;
-var deptProfiles = [];
-while (dept.length > 0) {
-    var currentValue = dept.pop();
 
-    var result = runDeptPayOff(currentValue);
-    payments += result.payments;
-    totalPayOff += result.amountPaidOff;
-    amountOfInterest += result.amountOfInterestOnDept;
-    deptProfiles.push([...result.datPoints]);
+class DevilDebt{
+    dept = [];
+    deptProfiles = [];
+    addDebt(value, minPayOff, interestPercentage, interestPeriod){
+        var debtItem = {
+            value,
+            payOff : minPayOff,
+            interest : interestPercentage,
+            interestPeriod
+        }
+        this.dept.push(debtItem);
+    }
+    run(){
+        var totalPayOff = 0;
+        var payments = 0;
+        var amountOfInterest = 0;
+        
+        while (this.dept.length > 0) {
+            var currentValue = this.dept.pop();
+
+            var result = runDeptPayOff(currentValue);
+            payments += result.payments;
+            totalPayOff += result.amountPaidOff;
+            amountOfInterest += result.amountOfInterestOnDept;
+            this.deptProfiles.push([...result.datPoints]);
+        }
+
+        //console.dir(this.deptProfiles);
+
+        console.log(`${totalPayOff} paid off in ${payments} payments (${amountOfInterest})`);
+    }
+
 }
-
-console.dir(deptProfiles);
-
-console.log(`${totalPayOff} paid off in ${payments} payments (${amountOfInterest})`);
 
 function runDeptPayOff(dept)
 {
@@ -90,3 +106,16 @@ function runDeptPayOff(dept)
 
     return output;
 }
+
+var debtClass = new DevilDebt();
+
+//debtClass.addDebt(125000, 578,4, 12);
+debtClass.addDebt(6000, 200,3, 1);
+
+debtClass.run();
+
+// dept.push({value:125000, payOff : 600,interest:3, interestPeriod : 12});
+// dept.push({value:6000,payOff : 200,interest:3, interestPeriod : 1});
+// dept.push({value:6000,payOff : 200,interest:5, interestPeriod : 3});
+// dept.push({value:6000,payOff : 200,interest:7, interestPeriod : 12});
+// dept.push({value:125000,payOff : 600,interest:7, interestPeriod : 12});

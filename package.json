@@ -1,0 +1,26 @@
+{
+  "name": "techdevils.devildebt",
+  "version": "1.0.0",
+  "description": "Shows the repayments and how extra payments can help to pay it off quicker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechDevils/DebtNumbers.git"
+  },
+  "keywords": [
+    "debt",
+    "money",
+    "payments",
+    "pay",
+    "off"
+  ],
+  "author": "Andrew Chadwick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TechDevils/DebtNumbers/issues"
+  },
+  "homepage": "https://github.com/TechDevils/DebtNumbers#readme"
+}
