@@ -61,7 +61,7 @@ function runDeptPayOff(dept)
         amountOfInterestOnDept : 0,
         datPoints : []
     };
-    while (amount > 0) {
+    while (amount > 0 || interestAmount > 0) {
         
         var paidOffValue = payOffValue;
         output.datPoints.push([amount,output.amountOfInterestOnDept,paidOffValue,interestAmount,paidOfDuringInterestPeriod,interestDuringInterestPeriod]);
@@ -110,7 +110,16 @@ function runDeptPayOff(dept)
 var debtClass = new DevilDebt();
 
 //debtClass.addDebt(125000, 578,4, 12);
-debtClass.addDebt(6000, 200,3, 1);
+//debtClass.addDebt(6000, 200, 3, 1);
+debtClass.addDebt(6000, 200, 7, 1);
+
+debtClass.run();
+
+debtClass.addDebt(6000, 200, 3, 1);
+
+debtClass.run();
+
+debtClass.addDebt(11000, 200, 3.5, 12);
 
 debtClass.run();
 
